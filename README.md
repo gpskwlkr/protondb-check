@@ -28,11 +28,11 @@ ProtonDB Checker.
 
 ## Table Of Contents
 
-- [About](#-about)
-- [Available commands](#-available-commands)
-- [Install](#-install)
-- [To do](#-to-do)
-- [Known issues](#-known-issues)
+- [About](#about)
+- [Available commands](#available-commands)
+- [Install](#install)
+- [To do](#to-do)
+- [Known issues](#known-issues)
 
 ## About
 
