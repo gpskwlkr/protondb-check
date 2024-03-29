@@ -40,21 +40,29 @@ ProtonDB Checker.
 
 ## Available commands
 
-| Command        | Args               | Required | Example                            |
-| -------------- | ------------------ | -------- | ---------------------------------- |
-| protondb-check | `steam_profile_id` | Yes      | `protondb-check 76561198354374976` |
+| Command        | Args                | Required | Example                               |
+| -------------- | ------------------- | -------- | ------------------------------------- |
+| protondb-check | `-p` `--profile-id` | Yes      | `protondb-check -p 76561198354374976` |
 
 ## Install
+
+# Windows / Linux
 
 You can install `protondb-check` via
 
 `cargo install protondb-check`
 
+or using prebuilt binaries on the [Releases]() page.
+
+# MacOS
+
+Only `cargo install protondb-check` available for MacOS.
+
 ## To do
 
 - [ ] Tests coverage
 - [ ] Refactor code to be more safe
-- [ ] Refactor code to work with `clap` for better args
+- [x] Refactor code to work with `clap` for better args
 - [ ] Receive single app-id through args
 - [ ] Receive single game name through args
 - [ ] Better way to handle filtering out DLCs

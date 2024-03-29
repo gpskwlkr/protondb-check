@@ -1,16 +1,23 @@
-use std::env;
 use itertools::Itertools;
+use anyhow::anyhow;
 
 mod structs;
 mod utils;
+mod args;
 
-fn main() {
+fn main() -> Result<(), anyhow::Error> {
     use terminal_menu::{menu, label, button, run, mut_menu};
+    
+    let args = args::Args::new();
 
-    let args: Vec<String> = env::args().collect();
-    let steam_profile_id: u64 = args[1].parse().unwrap();
+    let steam_profile_id:u64 = match args.profile_id.parse() {
+        Ok(value) => value,
+        Err(_error) => {
+            return Err(anyhow!("Please provide valid Steam profile ID."))
+        }
+    };
 
-    let games_list = utils::get_games_list(steam_profile_id);
+    let games_list = utils::get_games_list(steam_profile_id)?;
     
     let mut menu_items = vec![
         label("----------------------"),
@@ -34,4 +41,6 @@ fn main() {
 
         utils::output(&proton_response, &game.app_id, &game.name);
     }
+
+    Ok(())
 }
