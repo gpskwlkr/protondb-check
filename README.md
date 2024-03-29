@@ -6,6 +6,22 @@
 ProtonDB Checker.
 </h1>
 
+<div align="center">
+  <a href="https://github.com/gpskwlkr/protondb-check/actions/workflows/rust.yml" style="text-decoration: none;">
+    <img alt="build status" src="https://img.shields.io/github/actions/workflow/status/gpskwlkr/protondb-check/rust.yml?branch=main&style=for-the-badge">
+  </a>
+  <a href="LICENSE" style="text-decoration: none;">
+    <img alt="license" src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge">
+  </a>
+    <a href="https://crates.io/crates/protondb-check" style="text-decoration: none;">
+    <img alt="" src="https://img.shields.io/crates/v/protondb-check?style=for-the-badge">
+  </a>
+  
+  <a href="https://crates.io/crates/protondb-check" style="text-decoration: none;">
+    <img alt="" src="https://img.shields.io/crates/d/protondb-check?style=for-the-badge">
+  </a>
+</div>
+
 > <code>protondb-check</code> is a simple CLI tool which lets you check compatibility of your Steam games with Proton.
 
 > <code>protondb-check</code> is currently in active development stage, there might be bugs or other problems.
