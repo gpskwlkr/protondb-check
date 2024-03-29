@@ -12,9 +12,14 @@ ProtonDB Checker.
 
 ## Table Of Contents
 
+- [About](#-about)
 - [Available commands](#-available-commands)
 - [Install](#-install)
 - [To do](#-to-do)
+
+## About
+
+`protondb-check` relies on data provided by Steam on products you own and later on lets you choose the game you want to check utilizing ProtonDB API.
 
 ## Available commands
 
