@@ -1,5 +1,9 @@
+<p align="center">
+  <img alt="ProtonDB logo" src="./readme_items/protondb.svg" height="150" width="150" />
+</p>
+
 <h1 align="center">
-  ProtonDB Checker.   <img alt="clipboard" src="./readme_items/protondb.svg" height="35" width="35" align="center"/>
+ProtonDB Checker.
 </h1>
 
 > <code>protondb-check</code> is a simple CLI tool which lets you check compatibility of your Steam games with Proton.
