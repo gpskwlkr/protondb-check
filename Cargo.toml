@@ -2,7 +2,7 @@
 name = "protondb-check"
 version = "0.1.2"
 edition = "2021"
-license-file = "MIT"
+license = "MIT"
 description = "CLI tool for checking ProtonDB rating of your Steam games."
 authors = ["Giorgi Anakidze <giorgi.anakidze@outlook.com>"]
 repository = "https://github.com/gpskwlkr/protondb-check"
