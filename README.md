@@ -58,6 +58,21 @@ or using prebuilt binaries on the [Releases]() page.
 
 Only `cargo install protondb-check` available for MacOS.
 
+# Compiling from source
+
+<h3>Dependencies</h3>
+
+- cargo
+- rustc
+- openssl
+- pkg-config / pkgconf
+
+`git clone https://github.com/gpskwlkr/protondb-check && cd protondb-check`
+
+`cargo build --release`
+
+`cd target/release && ./protondb-check`
+
 ## To do
 
 - [ ] Tests coverage
