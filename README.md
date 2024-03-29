@@ -34,19 +34,19 @@ ProtonDB Checker.
 - [To do](#to-do)
 - [Known issues](#known-issues)
 
-## About
+# About
 
 `protondb-check` relies on data provided by Steam on products you own and later on lets you choose the game you want to check utilizing ProtonDB API.
 
-## Available commands
+# Available commands
 
 | Command        | Args                | Required | Example                               |
 | -------------- | ------------------- | -------- | ------------------------------------- |
 | protondb-check | `-p` `--profile-id` | Yes      | `protondb-check -p 76561198354374976` |
 
-## Install
+# Install
 
-# Windows / Linux
+## Windows / Linux
 
 You can install `protondb-check` via
 
@@ -54,13 +54,13 @@ You can install `protondb-check` via
 
 or using prebuilt binaries on the [Releases]() page.
 
-# MacOS
+## MacOS
 
 Only `cargo install protondb-check` available for MacOS.
 
-# Compiling from source
+## Compiling from source
 
-<h3>Dependencies</h3>
+### Dependencies
 
 - cargo
 - rustc
@@ -73,7 +73,7 @@ Only `cargo install protondb-check` available for MacOS.
 
 `cd target/release && ./protondb-check`
 
-## To do
+# To do
 
 - [ ] Tests coverage
 - [ ] Refactor code to be more safe
@@ -83,7 +83,7 @@ Only `cargo install protondb-check` available for MacOS.
 - [ ] Better way to handle filtering out DLCs
 - [ ] More to come...
 
-## Known issues
+# Known issues
 
 - [ ] DLC filtering is kinda bad, right now, if you have 0 hours on record in any steam product, it won't be included in `protondb-check` list, since Steam doesn't count hours on DLC's, soundtracks, etc.
 
