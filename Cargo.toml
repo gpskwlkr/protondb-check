@@ -1,6 +1,6 @@
 [package]
 name = "protondb-check"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 license-file = "LICENSE"
 description = "CLI tool for checking ProtonDB rating of your Steam games."
