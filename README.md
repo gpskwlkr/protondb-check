@@ -40,9 +40,12 @@ ProtonDB Checker.
 
 # Available commands
 
+> While `-p` or `-a` are both listed as not required, at least one should be provided.
+
 | Command        | Args                | Required | Example                               |
 | -------------- | ------------------- | -------- | ------------------------------------- |
-| protondb-check | `-p` `--profile-id` | Yes      | `protondb-check -p 76561198354374976` |
+| protondb-check | `-p` `--profile-id` | No       | `protondb-check -p 76561198354374976` |
+| protondb-check | `-a` `--app-id`     | No       | `protondb-check -a 271590`            |
 
 # Install
 
@@ -52,7 +55,7 @@ You can install `protondb-check` via
 
 `cargo install protondb-check`
 
-or using prebuilt binaries on the [Releases]() page.
+or using prebuilt binaries on the [Releases](https://github.com/gpskwlkr/protondb-check/releases) page.
 
 ## MacOS
 
