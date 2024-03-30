@@ -79,9 +79,9 @@ Only `cargo install protondb-check` available for MacOS.
 # To do
 
 - [ ] Tests coverage
-- [ ] Refactor code to be more safe
+- [x] Refactor code to be more safe
 - [x] Refactor code to work with `clap` for better args
-- [ ] Receive single app-id through args
+- [x] Receive single app-id through args
 - [ ] Receive single game name through args
 - [ ] Better way to handle filtering out DLCs
 - [ ] More to come...
@@ -90,4 +90,5 @@ Only `cargo install protondb-check` available for MacOS.
 
 - [ ] DLC filtering is kinda bad, right now, if you have 0 hours on record in any steam product, it won't be included in `protondb-check` list, since Steam doesn't count hours on DLC's, soundtracks, etc.
 
-If anything else occurs, feel free to submit to [issues](https://github.com/gpskwlkr/protondb-check/issues) page, otherwise, you can join [Discord](https://discord.gg/dR25EbTW) server. 
+If anything else occurs, feel free to submit to [issues](https://github.com/gpskwlkr/protondb-check/issues) page, otherwise, you can join [Discord](https://discord.gg/dR25EbTW) server.
+
