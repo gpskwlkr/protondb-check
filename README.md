@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">
-ProtonDB Checker.
+protondb-check
 </h1>
 
 <div align="center">
