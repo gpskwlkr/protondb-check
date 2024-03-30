@@ -22,8 +22,6 @@ ProtonDB Checker.
   </a>
 </div>
 
-> <code>protondb-check</code> is a simple CLI tool which lets you check compatibility of your Steam games with Proton.
-
 > <code>protondb-check</code> is currently in active development stage, there might be bugs or other problems.
 
 ## Table Of Contents
