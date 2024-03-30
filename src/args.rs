@@ -1,15 +1,14 @@
+use anyhow::{anyhow, Context, Result};
 use clap::{Parser, Subcommand};
-use anyhow::{anyhow, Result, Context};
 
 #[derive(Subcommand)]
-enum Command {
-}
+enum Command {}
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
 pub struct Args {
     /// Steam profile ID
-    #[arg(short = 'p', long = "profile-id", required = false)] 
+    #[arg(short = 'p', long = "profile-id", required = false)]
     pub profile_id: Option<String>,
 
     ///
@@ -19,12 +18,13 @@ pub struct Args {
 
 impl Args {
     pub fn new() -> Result<Self> {
-        Ok(Args::parse()) 
+        Ok(Args::parse())
     }
 
     pub fn validate_args(&self) -> Result<(), anyhow::Error> {
         if self.profile_id.is_none() && self.app_id.is_none() {
-            return Err(anyhow!("Either --profile-id or --app-id must be provided")).with_context(|| "validate_args");
+            return Err(anyhow!("Either --profile-id or --app-id must be provided"))
+                .with_context(|| "validate_args");
         }
 
         Ok(())

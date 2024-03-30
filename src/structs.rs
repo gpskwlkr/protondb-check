@@ -1,4 +1,4 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct GamesList {
@@ -17,14 +17,14 @@ pub struct Games {
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Game {
     #[serde(rename = "appID")]
-    pub app_id: u32, 
+    pub app_id: u32,
     pub name: String,
     pub logo: String,
     #[serde(rename = "storeLink")]
     pub store_link: String,
 
     #[serde(rename = "hoursOnRecord")]
-    pub hours_on_record: Option<f32>
+    pub hours_on_record: Option<f32>,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
@@ -36,5 +36,5 @@ pub struct ProtonAPIResponse {
     pub tier: String,
     pub total: u32,
     #[serde(rename = "trendingTier")]
-    pub trending_tier: String
+    pub trending_tier: String,
 }
