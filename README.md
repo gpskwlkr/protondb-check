@@ -20,6 +20,10 @@ ProtonDB Checker.
   <a href="https://crates.io/crates/protondb-check" style="text-decoration: none;">
     <img alt="" src="https://img.shields.io/crates/d/protondb-check?style=for-the-badge">
   </a>
+
+  <a href="https://coveralls.io/github/gpskwlkr/protondb-check?branch=main" style="text-decoration: none;">
+    <img alt="" src="https://img.shields.io/coverallsCoverage/github/gpskwlkr/protondb-check.svg?branch=main&style=for-the-badge">
+  </a>
 </div>
 
 > <code>protondb-check</code> is currently in active development stage, there might be bugs or other problems.
