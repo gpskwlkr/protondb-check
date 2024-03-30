@@ -42,10 +42,10 @@ ProtonDB Checker.
 
 > While `-p` or `-a` are both listed as not required, at least one should be provided.
 
-| Command        | Args                | Required | Example                               |
-| -------------- | ------------------- | -------- | ------------------------------------- |
-| protondb-check | `-p` `--profile-id` | No       | `protondb-check -p 76561198354374976` |
-| protondb-check | `-a` `--app-id`     | No       | `protondb-check -a 271590`            |
+| Command        | Description                                     | Args                | Required | Example                               |
+| -------------- | ----------------------------------------------- | ------------------- | -------- | ------------------------------------- |
+| protondb-check | Choose one game from all owned                  | `-p` `--profile-id` | No       | `protondb-check -p 76561198354374976` |
+| protondb-check | Check particular app even if not owned in Steam | `-a` `--app-id`     | No       | `protondb-check -a 271590`            |
 
 # Install
 
