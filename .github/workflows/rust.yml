@@ -2,9 +2,9 @@ name: Rust
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 env:
   CARGO_TERM_COLOR: always
@@ -13,25 +13,35 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Update local toolchain
-      run: |
-        rustup update
-        rustup component add clippy
-        rustup component add rustfmt
+      - name: Update local toolchain
+        run: |
+          rustup update
+          rustup component add clippy
+          rustup component add rustfmt
+          rustup install nightly
+          cargo install cargo-llvm-cov --locked
 
-    - name: Toolchain info
-      run: |
-        cargo --version --verbose
-        rustc --version
-        cargo clippy --version  
+      - name: Toolchain info
+        run: |
+          cargo --version --verbose
+          rustc --version
+          cargo clippy --version
 
-    - name: Lint
-      run: | 
-        cargo fmt -- --check
-        cargo clippy -- -D warnings
-    
-    - name: Build
-      run: | 
-        cargo build --release
+      - name: Lint
+        run: |
+          cargo fmt -- --check
+          cargo clippy -- -D warnings
+
+      - name: Build
+        run: |
+          cargo build --release
+
+      - name: Test
+        run: |
+          mkdir coverage
+          cargo llvm-cov --lcov --output-path ./coverage/lcov.in
+
+      - name: Coveralls GitHub Action
+        uses: coverallsapp/github-action@v2

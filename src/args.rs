@@ -11,7 +11,7 @@ pub struct Args {
     #[arg(short = 'p', long = "profile-id", required = false)]
     pub profile_id: Option<String>,
 
-    ///
+    /// Steam Application ID (obtainable on Store page)
     #[arg(short = 'a', long = "app-id", required = false)]
     pub app_id: Option<u32>,
 }
@@ -28,5 +28,26 @@ impl Args {
         }
 
         Ok(())
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_validate_args_no_args() {
+        let args = Args {
+            profile_id: None,
+            app_id: None
+        };
+
+        let result = args.validate_args();
+
+        assert!(result.is_err());
+        assert_eq!(
+            result.unwrap_err().to_string(),
+            "validate_args"
+        );
     }
 }

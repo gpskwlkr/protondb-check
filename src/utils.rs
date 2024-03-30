@@ -11,10 +11,12 @@ const KNOWN_NOT_GAMES: &[u32] = &[
 ];
 
 const PROTON_API_URL: &str = "https://www.protondb.com/api/v1/reports/summaries/";
+const STEAM_XML_URL: &str = "https://steamcommunity.com/profiles/";
 
 pub fn get_games_list(steam_id: u64) -> Result<HashMap<String, Game>> {
     let url = format!(
-        "https://steamcommunity.com/profiles/{}/games?tab=all&xml=1",
+        "{}{}/games?tab=all&xml=1",
+        STEAM_XML_URL,
         steam_id
     );
     let response = get(url).unwrap();
@@ -70,10 +72,60 @@ pub fn output(response: &ProtonAPIResponse, app_id: &u32, game: Option<&str>) {
     println!("Trending tier difference may involve latest proton updates.");
 }
 
-fn calculate_percent(score: f32) -> f32 {
+fn calculate_percent(score: f32) -> u32 {
     if score >= 1.00 {
-        score
+        score as u32
     } else {
-        ((score * 100.0) as i32) as f32
+        (score * 100.0) as u32
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_check_proton_db_valid() {
+        let app_id: u32 = 870780; 
+
+        let result = check_proton_db(&app_id);
+
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_check_proton_db_invalid() {
+        let app_id: u32 = 1;
+
+        let result = check_proton_db(&app_id);
+
+        assert!(result.is_err());
+        assert_eq!("check_proton_db", result.unwrap_err().to_string());
+    }
+
+    #[test]
+    fn test_get_games_list_valid() {
+        let steam_profile_id: u64 = 76561198354374976;
+
+        let result = get_games_list(steam_profile_id);
+
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_get_games_list_invalid() {
+        let steam_profile_id: u64 = 1;
+
+        let result = get_games_list(steam_profile_id);
+
+        assert!(result.is_err());
+        assert_eq!("get_games_list", result.unwrap_err().to_string());
+    }
+
+    #[test]
+    fn test_calculate_percent() {
+        let result = calculate_percent(0.7132);
+
+        assert_eq!(result, 71);
     }
 }

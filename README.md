@@ -43,7 +43,7 @@ ProtonDB Checker.
 | Command        | Description                                     | Args                | Required | Example                               |
 | -------------- | ----------------------------------------------- | ------------------- | -------- | ------------------------------------- |
 | protondb-check | Choose one game from all owned                  | `-p` `--profile-id` | No       | `protondb-check -p 76561198354374976` |
-| protondb-check | Check particular app even if not owned in Steam | `-a` `--app-id`     | No       | `protondb-check -a 271590`            |
+| protondb-check | Check particular app even if not owned in Steam | `-a` `--app-id`     | No       | `protondb-check -a 1145360`           |
 
 # Install
 
@@ -89,4 +89,3 @@ Only `cargo install protondb-check` available for MacOS.
 - [ ] DLC filtering is kinda bad, right now, if you have 0 hours on record in any steam product, it won't be included in `protondb-check` list, since Steam doesn't count hours on DLC's, soundtracks, etc.
 
 If anything else occurs, feel free to submit to [issues](https://github.com/gpskwlkr/protondb-check/issues) page, otherwise, you can join [Discord](https://discord.gg/dR25EbTW) server.
-
