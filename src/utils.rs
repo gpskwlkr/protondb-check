@@ -14,11 +14,7 @@ const PROTON_API_URL: &str = "https://www.protondb.com/api/v1/reports/summaries/
 const STEAM_XML_URL: &str = "https://steamcommunity.com/profiles/";
 
 pub fn get_games_list(steam_id: u64) -> Result<HashMap<String, Game>> {
-    let url = format!(
-        "{}{}/games?tab=all&xml=1",
-        STEAM_XML_URL,
-        steam_id
-    );
+    let url = format!("{}{}/games?tab=all&xml=1", STEAM_XML_URL, steam_id);
     let response = get(url).unwrap();
     let xml_string = response.text().unwrap();
     let games_list: GamesList = match serde_xml_rs::from_str(&xml_string) {
@@ -86,7 +82,7 @@ mod tests {
 
     #[test]
     fn test_check_proton_db_valid() {
-        let app_id: u32 = 870780; 
+        let app_id: u32 = 870780;
 
         let result = check_proton_db(&app_id);
 

@@ -39,15 +39,12 @@ mod tests {
     fn test_validate_args_no_args() {
         let args = Args {
             profile_id: None,
-            app_id: None
+            app_id: None,
         };
 
         let result = args.validate_args();
 
         assert!(result.is_err());
-        assert_eq!(
-            result.unwrap_err().to_string(),
-            "validate_args"
-        );
+        assert_eq!(result.unwrap_err().to_string(), "validate_args");
     }
 }
