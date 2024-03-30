@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 use reqwest::blocking::get;
-use anyhow::anyhow;
+use anyhow::{anyhow, Result, Context};
 
 use crate::structs::{GamesList, Game, ProtonAPIResponse};
 
@@ -12,13 +12,13 @@ const KNOWN_NOT_GAMES: &[u32] = &[
 
 const PROTON_API_URL: &str = "https://www.protondb.com/api/v1/reports/summaries/";
 
-pub fn get_games_list(steam_id: u64) -> Result<HashMap<String, Game>, anyhow::Error> {
+pub fn get_games_list(steam_id: u64) -> Result<HashMap<String, Game>> {
     let url = format!("https://steamcommunity.com/profiles/{}/games?tab=all&xml=1", steam_id);
     let response = get(url).unwrap();
     let xml_string = response.text().unwrap();
     let games_list: GamesList = match serde_xml_rs::from_str(&xml_string) {
         Ok(value) => value,
-        Err(_error) => return Err(anyhow!("Unable to retrieve Steam data. Is Steam profile ID valid?"))
+        Err(_error) => return Err(anyhow!("Unable to retrieve Steam data. Is Steam profile ID valid?")).with_context(|| "get_games_list")
     };
     
     let game_map: HashMap<String, Game> = games_list.games.game.into_iter()
@@ -29,18 +29,26 @@ pub fn get_games_list(steam_id: u64) -> Result<HashMap<String, Game>, anyhow::Er
     Ok(game_map) 
 }
 
-pub fn check_proton_db(app_id: &u32) -> ProtonAPIResponse {
+pub fn check_proton_db(app_id: &u32) -> Result<ProtonAPIResponse> {
     let url = format!("{}{}.json", PROTON_API_URL, app_id);
     let response_text = get(url).unwrap().text().unwrap();
-    let api_response: ProtonAPIResponse = serde_json::from_str(&response_text).expect("Failed to deserialize JSON");
+    let api_response = match serde_json::from_str(&response_text) {
+        Ok(value) => value,
+        Err(_error) => return Err(anyhow!("Unable to retrieve data. Possibly not found in ProtonDB")).with_context(|| "check_proton_db")
+    };
 
-    api_response
+    Ok(api_response) 
 }
 
-pub fn output(response: &ProtonAPIResponse, app_id: &u32, game: &str) {
+pub fn output(response: &ProtonAPIResponse, app_id: &u32, game: Option<&str>) {
     println!("----------------------");
     println!("App ID: {}", app_id);
-    println!("Game: {}", game);
+    if let Some(game_name) = game 
+    {
+        println!("Game: {}", game_name);
+    } else {
+        println!("Note: game name couldn't be fetched in this mode.");
+    }
     println!("General Tier: {}", response.tier);
     println!("Trending Tier: {}", response.trending_tier);
     println!("Success chance: {}%", calculate_percent(response.score));
@@ -51,6 +59,6 @@ fn calculate_percent(score: f32) -> f32 {
     if score >= 1.00 {
         score
     } else {
-        ((score * 100.0) as i32) as f32 / 100.0 * 100.0
+        ((score * 100.0) as i32) as f32 
     }
 }

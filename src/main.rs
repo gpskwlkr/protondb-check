@@ -1,19 +1,33 @@
+use args::Args;
 use itertools::Itertools;
-use anyhow::anyhow;
+use anyhow::{anyhow, Result, Context};
 
 mod structs;
 mod utils;
 mod args;
 
-fn main() -> Result<(), anyhow::Error> {
-    use terminal_menu::{menu, label, button, run, mut_menu};
-    
-    let args = args::Args::new();
+fn main() -> Result<()> {
+    let args = Args::new()?;
 
-    let steam_profile_id:u64 = match args.profile_id.parse() {
+    args.validate_args()?;
+
+    if args.app_id.is_some() {
+        handle_app_id(args)?;
+    } else {
+        handle_profile_id(args)?;
+    }
+
+    Ok(())
+}
+
+fn handle_profile_id(args: Args) -> Result<()> {
+    
+    use terminal_menu::{menu, label, button, run, mut_menu};
+
+    let steam_profile_id:u64 = match args.profile_id.unwrap().parse() {
         Ok(value) => value,
         Err(_error) => {
-            return Err(anyhow!("Please provide valid Steam profile ID."))
+            return Err(anyhow!("Please provide valid Steam profile ID.")).with_context(|| "handle_profile_id")
         }
     };
 
@@ -37,10 +51,18 @@ fn main() -> Result<(), anyhow::Error> {
     {
         let mm = mut_menu(&menu);
         let game = games_list.get(mm.selected_item_name()).unwrap();
-        let proton_response = utils::check_proton_db(&game.app_id);
+        let proton_response = utils::check_proton_db(&game.app_id)?;
 
-        utils::output(&proton_response, &game.app_id, &game.name);
+        utils::output(&proton_response, &game.app_id, Some(&game.name));
     }
+
+    Ok(())
+}
+
+fn handle_app_id(args: Args) -> Result<()> {
+    let app_id = args.app_id.unwrap();
+    let proton_response = utils::check_proton_db(&app_id)?;
+    utils::output(&proton_response, &app_id, None);
 
     Ok(())
 }
