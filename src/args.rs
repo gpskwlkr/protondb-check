@@ -36,7 +36,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_validate_args_no_args() {
+    fn test_validate_args_invalid() {
         let args = Args {
             profile_id: None,
             app_id: None,
@@ -46,5 +46,17 @@ mod tests {
 
         assert!(result.is_err());
         assert_eq!(result.unwrap_err().to_string(), "validate_args");
+    }
+
+    #[test]
+    fn test_validate_args_valid() {
+        let args = Args {
+            profile_id: Some("12341256".to_string()),
+            app_id: None,
+        };
+
+        let result = args.validate_args();
+
+        assert!(result.is_ok());
     }
 }

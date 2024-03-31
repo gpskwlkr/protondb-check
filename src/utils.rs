@@ -40,7 +40,8 @@ pub fn get_games_list(steam_id: u64) -> Result<HashMap<String, Game>> {
 
 pub fn check_proton_db(app_id: &u32) -> Result<ProtonAPIResponse> {
     let url = format!("{}{}.json", PROTON_API_URL, app_id);
-    let response_text = get(url).unwrap().text().unwrap();
+    let response_text = get(url)?.text()?;
+
     let api_response = match serde_json::from_str(&response_text) {
         Ok(value) => value,
         Err(_error) => {
@@ -69,11 +70,7 @@ pub fn output(response: &ProtonAPIResponse, app_id: &u32, game: Option<&str>) {
 }
 
 fn calculate_percent(score: f32) -> u32 {
-    if score >= 1.00 {
-        score as u32
-    } else {
-        (score * 100.0) as u32
-    }
+    (score * 100.0) as u32
 }
 
 #[cfg(test)]
@@ -119,7 +116,7 @@ mod tests {
     }
 
     #[test]
-    fn test_calculate_percent() {
+    fn test_calculate_percent_valid() {
         let result = calculate_percent(0.7132);
 
         assert_eq!(result, 71);
