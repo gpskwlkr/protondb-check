@@ -25,6 +25,7 @@ protondb-check
     <img alt="" src="https://img.shields.io/coverallsCoverage/github/gpskwlkr/protondb-check.svg?branch=main&style=for-the-badge">
   </a>
 </div>
+<br>
 
 > <code>protondb-check</code> is currently in active development stage, there might be bugs or other problems.
 
